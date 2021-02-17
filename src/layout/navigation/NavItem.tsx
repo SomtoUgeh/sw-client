@@ -5,12 +5,17 @@ import { ReactComponent as Star } from 'assets/star.svg';
 
 interface NavItemInterface {
 	name: string;
+	onClick: () => void;
 }
 
 const NavItem: React.FC<NavItemInterface> = props => {
 	return (
 		<li>
-			<NavLink activeClassName="active" to={`/${props?.name}`}>
+			<NavLink
+				activeClassName="active"
+				to={`/${props?.name}`}
+				onClick={props.onClick}
+			>
 				{props.name === 'favorite' ? (
 					<>
 						<span>

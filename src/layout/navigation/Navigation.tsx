@@ -47,7 +47,11 @@ export const Navigation: React.FC = () => {
 					<nav>
 						<NavigationContainer>
 							{[...keys, 'favorite'].map(key => (
-								<NavItem name={key} key={key} />
+								<NavItem
+									key={key}
+									name={key}
+									onClick={() => setOpenMenu(false)}
+								/>
 							))}
 						</NavigationContainer>
 					</nav>

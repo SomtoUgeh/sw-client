@@ -44,7 +44,11 @@ things a user is probably going to want to do.
 
 ## Review
 
-Short-comings: Not battle tested
+Short-comings: poor testing
+
+## Todo
+
+Finish up testing 
 
 ## Design
 

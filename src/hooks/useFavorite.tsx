@@ -20,6 +20,8 @@ export const useFavorite = (
 	identifier: 'name' | 'title' = 'name',
 ) => {
 	const { addToFavorite, removeFromFavorite } = useFavoriteContext();
+
+	// reach out to the localStorage and fetch resource with key 'sw-fav'
 	const { storedValue: storedFavorites } = useLocalStorage<StorageType>(
 		'sw-fav',
 		[],
@@ -31,7 +33,10 @@ export const useFavorite = (
 
 	React.useEffect(() => {
 		if (resource.results) {
+			// get all favs items that match the specify key provided, e.g fav items 'people' resource
 			const filteredFavs = storedFavorites?.filter(item => item.favKey === key);
+
+			// create a transformed base for resource containing important keys for fav functionality
 			const transformedBase = resource?.results.map(res => ({
 				...res,
 				isFav: false,
@@ -54,6 +59,12 @@ export const useFavorite = (
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [resource.results]);
 
+	/**
+	 *
+	 * @param info - takes in a unit resource and checks to add or remove from the fav list.
+	 * Works with a unique identifier like name, title of a resource and well as the resource type.
+	 *
+	 */
 	function toggleFavorite(info: BaseInterface) {
 		const items = Array.isArray(BASE_RESOURCE)
 			? BASE_RESOURCE.map(item => {

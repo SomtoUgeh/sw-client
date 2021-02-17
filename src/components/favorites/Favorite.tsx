@@ -6,6 +6,7 @@ import {
 	SubInformation,
 } from 'components/cards/style';
 import Card from 'components/cards/Card';
+import { PageTitle } from 'components/PageTitle';
 import { composeResource } from 'utils/composeResourceDetails';
 
 /**
@@ -14,6 +15,9 @@ import { composeResource } from 'utils/composeResourceDetails';
  */
 const Favorite = () => {
 	const { favoriteResources, removeFromFavorite } = useFavorite();
+
+	if (favoriteResources.length < 1)
+		return <PageTitle>No resource here</PageTitle>;
 
 	return (
 		<CardWrapper>

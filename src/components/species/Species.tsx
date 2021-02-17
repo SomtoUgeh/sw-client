@@ -6,7 +6,7 @@ import { RootState } from 'store/rootReducers';
 import { fetchResourceRequest } from 'redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardWrapper } from 'components/cards/style';
-import { PageHeaderComponent } from 'components/PageTitle';
+import { PageHeaderComponent, PageTitle } from 'components/PageTitle';
 import { useDetailsView } from 'contexts/DetailsContext';
 import { useFavorite } from 'hooks/useFavorite';
 
@@ -50,7 +50,7 @@ const Species: React.FC = () => {
 				</CardWrapper>
 			</>
 		);
-	else return <div />;
+	else return <PageTitle>No resource here</PageTitle>;
 };
 
 export default Species;

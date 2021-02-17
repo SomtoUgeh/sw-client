@@ -7,7 +7,7 @@ import { fetchResourceRequest } from 'redux/action';
 import { CardWrapper } from 'components/cards/style';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDetailsView } from 'contexts/DetailsContext';
-import { PageHeaderComponent } from 'components/PageTitle';
+import { PageHeaderComponent, PageTitle } from 'components/PageTitle';
 import { useFavorite } from 'hooks/useFavorite';
 
 const People: React.FC = () => {
@@ -57,7 +57,7 @@ const People: React.FC = () => {
 				</CardWrapper>
 			</>
 		);
-	else return <div />;
+	else return <PageTitle>No resource here</PageTitle>;
 };
 
 export default People;

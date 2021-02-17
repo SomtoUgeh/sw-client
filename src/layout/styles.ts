@@ -175,5 +175,5 @@ export const ContentWrapper = styled.div`
 `;
 
 export const ExtendedContainer = styled(Container)`
-	padding: 4rem 0;
+	padding: 4rem 26px;
 `;

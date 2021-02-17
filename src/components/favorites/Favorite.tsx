@@ -8,6 +8,10 @@ import {
 import Card from 'components/cards/Card';
 import { composeResource } from 'utils/composeResourceDetails';
 
+/**
+ * Get all favs from localStorage, loop over and render information about each resource
+ * Functionality to also remove a resource from fav
+ */
 const Favorite = () => {
 	const { favoriteResources, removeFromFavorite } = useFavorite();
 

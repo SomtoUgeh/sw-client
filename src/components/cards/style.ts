@@ -58,8 +58,12 @@ export const CardItem = styled.div`
 	}
 
 	div.other-info {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		flex-wrap: wrap;
+
+		div {
+			flex: 1;
+		}
 	}
 `;
 

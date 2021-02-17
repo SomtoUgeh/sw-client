@@ -18,7 +18,7 @@ export interface GetResponseMockInterface {
 	url: string;
 }
 
-const response: GetResponseMockInterface = {
+export const response: GetResponseMockInterface = {
 	name: 'Luke Skywalker',
 	height: '172',
 	mass: '77',

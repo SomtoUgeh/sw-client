@@ -3,10 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 
-export function useLocalStorage<StorageType>(
-	key: string,
-	initialValue: any,
-): readonly [StorageType, (value: any) => void] {
+export function useLocalStorage<StorageType>(key: string, initialValue: any) {
 	// State to store our value
 	// Pass initial state function to useState so logic is only executed once
 	const [storedValue, setStoredValue] = useState<StorageType>(() => {
@@ -40,5 +37,5 @@ export function useLocalStorage<StorageType>(
 		}
 	};
 
-	return [storedValue, setValue] as const;
+	return { storedValue, setValue };
 }

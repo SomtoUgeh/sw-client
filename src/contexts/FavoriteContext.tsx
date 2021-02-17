@@ -23,10 +23,10 @@ FavoriteContext.displayName = 'FavoriteContext';
 
 function FavoriteContextProvider(props: React.PropsWithChildren<{}>) {
 	const { Provider } = FavoriteContext;
-	const [storedFavorites, setStoredFavorites] = useLocalStorage<StorageType>(
-		'sw-fav',
-		[],
-	);
+	const {
+		storedValue: storedFavorites,
+		setValue: setStoredFavorites,
+	} = useLocalStorage<StorageType>('sw-fav', []);
 
 	/**
 	 * Build a transformed base resources containing isFav and favKey for favorites
@@ -88,6 +88,10 @@ function FavoriteContextProvider(props: React.PropsWithChildren<{}>) {
 	);
 }
 
+/**
+ * Handles functionality around favorite resources
+ * @returns - {favoriteResources, addToFavorite, removeFromFavorite}
+ */
 function useFavorite(): FavoriteContextInterface {
 	const context = React.useContext(FavoriteContext);
 

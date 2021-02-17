@@ -10,6 +10,10 @@ interface CardPropsInterface {
 	handleToggleFav?: () => void;
 }
 
+/**
+ *
+ * Card component wrapper for all resources
+ */
 const Card: React.FC<CardPropsInterface> = props => {
 	return (
 		<CardItem>

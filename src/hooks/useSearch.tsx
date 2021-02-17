@@ -12,6 +12,11 @@ interface UseSearchInterface {
 	setResults: React.Dispatch<React.SetStateAction<BaseInterface[]>>;
 }
 
+/**
+ *
+ * @param base - Composed base resource for component, contains isFav and favKey attributes
+ * @param identifier - unique identifier for resource type. Default is 'name'
+ */
 export const useSearch = (
 	base: BaseInterface[],
 	identifier: 'name' | 'title' = 'name',

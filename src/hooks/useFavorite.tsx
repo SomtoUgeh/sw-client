@@ -8,13 +8,23 @@ import { useFavorite as useFavoriteContext } from 'contexts/FavoriteContext';
 
 type StorageType = Record<string, unknown>[];
 
+/**
+ *
+ * @param resource - Resource fetched from redux store {status, results}
+ * @param key - Name/type of resources handled e.g 'people', 'planet'
+ * @param identifier - unique identifier for resource type. Default is 'name'
+ */
 export const useFavorite = (
 	resource: GetResponseInterface,
 	key: string,
 	identifier: 'name' | 'title' = 'name',
 ) => {
 	const { addToFavorite, removeFromFavorite } = useFavoriteContext();
-	const [storedFavorites] = useLocalStorage<StorageType>('sw-fav', []);
+	const { storedValue: storedFavorites } = useLocalStorage<StorageType>(
+		'sw-fav',
+		[],
+	);
+
 	const [BASE_RESOURCE, SET_BASE_RESOURCE] = React.useState<BaseInterface[]>(
 		resource.results,
 	);

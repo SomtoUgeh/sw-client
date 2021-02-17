@@ -55,6 +55,10 @@ function DetailsContextProvider(
 	);
 }
 
+/**
+ * Handles control for the details modal.
+ * @return  getter and setter for resources type, isModalOpen boolean, getter and setter for selected resource and post closeModal functionality
+ */
 function useDetailsView(): DetailsContextInterface {
 	const context = React.useContext(DetailsContext);
 

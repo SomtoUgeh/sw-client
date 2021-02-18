@@ -24,14 +24,7 @@ const People: React.FC = () => {
   }, [dispatch]);
 
   const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'people');
-  const { searchTerm, setSearchTerm, results, setResults } = useSearch(
-    BASE_RESOURCE,
-  );
-
-  React.useEffect(() => {
-    setResults(BASE_RESOURCE);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [BASE_RESOURCE]);
+  const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
 
   if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
   if (status === 'SUCCESS' && resource.results.length > 0)

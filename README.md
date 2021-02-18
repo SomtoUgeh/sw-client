@@ -48,7 +48,7 @@ Short-comings: poor testing
 
 ## Todo
 
-Finish up testing 
+Finish up testing
 
 ## Design
 

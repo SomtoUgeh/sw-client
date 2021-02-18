@@ -11,53 +11,53 @@ import { PageHeaderComponent, PageTitle } from 'components/PageTitle';
 import { useFavorite } from 'hooks/useFavorite';
 
 const People: React.FC = () => {
-	const dispatch = useDispatch();
-	const {
-		toggle: toggleModal,
-		setSelectedResource,
-		setType,
-	} = useDetailsView();
+  const dispatch = useDispatch();
+  const {
+    toggle: toggleModal,
+    setSelectedResource,
+    setType,
+  } = useDetailsView();
 
-	const { resource, status } = useSelector((state: RootState) => state.base);
-	React.useEffect(() => {
-		dispatch(fetchResourceRequest({ url: 'people/' }));
-	}, [dispatch]);
+  const { resource, status } = useSelector((state: RootState) => state.base);
+  React.useEffect(() => {
+    dispatch(fetchResourceRequest({ url: 'people/' }));
+  }, [dispatch]);
 
-	const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'people');
-	const { searchTerm, setSearchTerm, results, setResults } = useSearch(
-		BASE_RESOURCE,
-	);
+  const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'people');
+  const { searchTerm, setSearchTerm, results, setResults } = useSearch(
+    BASE_RESOURCE,
+  );
 
-	React.useEffect(() => {
-		setResults(BASE_RESOURCE);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [BASE_RESOURCE]);
+  React.useEffect(() => {
+    setResults(BASE_RESOURCE);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [BASE_RESOURCE]);
 
-	if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
-	if (status === 'SUCCESS' && resource.results.length > 0)
-		return (
-			<>
-				<PageHeaderComponent
-					{...{ searchTerm, setSearchTerm, name: 'people' }}
-				/>
+  if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
+  if (status === 'SUCCESS' && resource.results.length > 0)
+    return (
+      <>
+        <PageHeaderComponent
+          {...{ searchTerm, setSearchTerm, name: 'people' }}
+        />
 
-				<CardWrapper>
-					{results.map((info, key) => (
-						<PeopleCard
-							info={info}
-							key={`${key}-people`}
-							handleToggleFav={() => toggleFavorite(info)}
-							onClick={() => {
-								setType('people');
-								setSelectedResource(info);
-								toggleModal();
-							}}
-						/>
-					))}
-				</CardWrapper>
-			</>
-		);
-	else return <PageTitle>No resource here</PageTitle>;
+        <CardWrapper>
+          {results.map((info, key) => (
+            <PeopleCard
+              info={info}
+              key={`${key}-people`}
+              handleToggleFav={() => toggleFavorite(info)}
+              onClick={() => {
+                setType('people');
+                setSelectedResource(info);
+                toggleModal();
+              }}
+            />
+          ))}
+        </CardWrapper>
+      </>
+    );
+  else return <PageTitle>No resource here</PageTitle>;
 };
 
 export default People;

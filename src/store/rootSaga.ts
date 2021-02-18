@@ -5,6 +5,6 @@ import { fetchRootSaga } from 'components/roots/redux/saga';
 import { takeLatest } from 'redux-saga/effects';
 
 export default function* rootSaga() {
-	yield takeLatest(FETCH_ROOT, fetchRootSaga);
-	yield takeLatest(FETCH_RESOURCE, fetchBaseResourceSaga);
+  yield takeLatest(FETCH_ROOT, fetchRootSaga);
+  yield takeLatest(FETCH_RESOURCE, fetchBaseResourceSaga);
 }

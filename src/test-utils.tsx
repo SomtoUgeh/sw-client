@@ -6,15 +6,15 @@ import { store } from 'store';
 import { RenderOptions, render as rtlRender } from '@testing-library/react';
 
 const render = (ui: React.ReactElement, renderOptions?: RenderOptions) => {
-	const history = createMemoryHistory();
+  const history = createMemoryHistory();
 
-	const Wrapper: React.FC = ({ children }) => (
-		<Provider store={store}>
-			<Router history={history}>{children}</Router>
-		</Provider>
-	);
+  const Wrapper: React.FC = ({ children }) => (
+    <Provider store={store}>
+      <Router history={history}>{children}</Router>
+    </Provider>
+  );
 
-	return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 };
 
 // re-export everything

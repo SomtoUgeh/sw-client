@@ -1,32 +1,32 @@
 {
-	"extends": [
-		"react-app",
-		"plugin:@typescript-eslint/recommended",
-		"prettier",
-		"prettier/@typescript-eslint",
-		"eslint-config-prettier"
-	],
-	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"ecmaVersion": 2019,
-		"sourceType": "module"
-	},
-	"plugins": ["react-hooks", "@typescript-eslint"],
-	"rules": {
-		"quotes": ["error", "single"],
-		"semi": ["error", "always"],
-		"no-undef": "off",
-		"no-empty": "warn",
-		"no-console": "error",
-		"no-func-assign": 1,
-		"no-unreachable": 1,
-		"no-invalid-regexp": 1,
-		"jsx-a11y/href-no-hash": "off",
-		"react-hooks/rules-of-hooks": "error",
-		"react-hooks/exhaustive-deps": "warn",
-		"@typescript-eslint/camelcase": "off",
-		"@typescript-eslint/ban-ts-comment": "off",
-		"@typescript-eslint/explicit-function-return-type": "off",
-		"@typescript-eslint/explicit-module-boundary-types": "off"
-	}
+  "extends": [
+    "react-app",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "eslint-config-prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module"
+  },
+  "plugins": ["react-hooks", "@typescript-eslint"],
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-undef": "off",
+    "no-empty": "warn",
+    "no-console": "error",
+    "no-func-assign": 1,
+    "no-unreachable": 1,
+    "no-invalid-regexp": 1,
+    "jsx-a11y/href-no-hash": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
 }

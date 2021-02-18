@@ -5,25 +5,25 @@ export const FETCH_RESOURCE_FAILURE = '@@internal/FETCH_RESOURCE_FAILURE';
 export const FETCH_RESOURCE_SUCCESS = '@@internal/FETCH_RESOURCE_SUCCESS';
 
 export type FetchResponseInterface = {
-	url: string;
+  url: string;
 };
 
 interface FetchResource {
-	type: typeof FETCH_RESOURCE;
-	payload: FetchResponseInterface;
+  type: typeof FETCH_RESOURCE;
+  payload: FetchResponseInterface;
 }
 
 interface FetchResourceFailure {
-	type: typeof FETCH_RESOURCE_FAILURE;
-	payload: string;
+  type: typeof FETCH_RESOURCE_FAILURE;
+  payload: string;
 }
 
 interface FetchResourceSuccess {
-	type: typeof FETCH_RESOURCE_SUCCESS;
-	payload: GetResponseInterface;
+  type: typeof FETCH_RESOURCE_SUCCESS;
+  payload: GetResponseInterface;
 }
 
 export type FetchResourceActionType =
-	| FetchResource
-	| FetchResourceFailure
-	| FetchResourceSuccess;
+  | FetchResource
+  | FetchResourceFailure
+  | FetchResourceSuccess;

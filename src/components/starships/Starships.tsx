@@ -11,46 +11,46 @@ import { useDetailsView } from 'contexts/DetailsContext';
 import { useFavorite } from 'hooks/useFavorite';
 
 const Starships: React.FC = () => {
-	const dispatch = useDispatch();
-	const {
-		toggle: toggleModal,
-		setSelectedResource,
-		setType,
-	} = useDetailsView();
+  const dispatch = useDispatch();
+  const {
+    toggle: toggleModal,
+    setSelectedResource,
+    setType,
+  } = useDetailsView();
 
-	const { resource, status } = useSelector((state: RootState) => state.base);
-	React.useEffect(() => {
-		dispatch(fetchResourceRequest({ url: 'starships/' }));
-	}, [dispatch]);
+  const { resource, status } = useSelector((state: RootState) => state.base);
+  React.useEffect(() => {
+    dispatch(fetchResourceRequest({ url: 'starships/' }));
+  }, [dispatch]);
 
-	const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'starship');
-	const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
+  const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'starship');
+  const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
 
-	if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
-	if (status === 'SUCCESS' && resource.results.length > 0)
-		return (
-			<>
-				<PageHeaderComponent
-					{...{ searchTerm, setSearchTerm, name: 'starships' }}
-				/>
+  if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
+  if (status === 'SUCCESS' && resource.results.length > 0)
+    return (
+      <>
+        <PageHeaderComponent
+          {...{ searchTerm, setSearchTerm, name: 'starships' }}
+        />
 
-				<CardWrapper>
-					{results.map((info, key) => (
-						<StarshipsCard
-							info={info}
-							key={`${key}-starships`}
-							handleToggleFav={() => toggleFavorite(info)}
-							onClick={() => {
-								setType('starship');
-								setSelectedResource(info);
-								toggleModal();
-							}}
-						/>
-					))}
-				</CardWrapper>
-			</>
-		);
-	else return <PageTitle>No resource here</PageTitle>;
+        <CardWrapper>
+          {results.map((info, key) => (
+            <StarshipsCard
+              info={info}
+              key={`${key}-starships`}
+              handleToggleFav={() => toggleFavorite(info)}
+              onClick={() => {
+                setType('starship');
+                setSelectedResource(info);
+                toggleModal();
+              }}
+            />
+          ))}
+        </CardWrapper>
+      </>
+    );
+  else return <PageTitle>No resource here</PageTitle>;
 };
 
 export default Starships;

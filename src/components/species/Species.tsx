@@ -11,46 +11,46 @@ import { useDetailsView } from 'contexts/DetailsContext';
 import { useFavorite } from 'hooks/useFavorite';
 
 const Species: React.FC = () => {
-	const dispatch = useDispatch();
-	const {
-		toggle: toggleModal,
-		setSelectedResource,
-		setType,
-	} = useDetailsView();
+  const dispatch = useDispatch();
+  const {
+    toggle: toggleModal,
+    setSelectedResource,
+    setType,
+  } = useDetailsView();
 
-	const { resource, status } = useSelector((state: RootState) => state.base);
-	React.useEffect(() => {
-		dispatch(fetchResourceRequest({ url: 'species/' }));
-	}, [dispatch]);
+  const { resource, status } = useSelector((state: RootState) => state.base);
+  React.useEffect(() => {
+    dispatch(fetchResourceRequest({ url: 'species/' }));
+  }, [dispatch]);
 
-	const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'people');
-	const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
+  const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'people');
+  const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
 
-	if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
-	if (status === 'SUCCESS' && resource.results.length > 0)
-		return (
-			<>
-				<PageHeaderComponent
-					{...{ searchTerm, setSearchTerm, name: 'species' }}
-				/>
+  if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
+  if (status === 'SUCCESS' && resource.results.length > 0)
+    return (
+      <>
+        <PageHeaderComponent
+          {...{ searchTerm, setSearchTerm, name: 'species' }}
+        />
 
-				<CardWrapper>
-					{results.map((info, key) => (
-						<SpeciesCard
-							info={info}
-							key={`${key}-species`}
-							handleToggleFav={() => toggleFavorite(info)}
-							onClick={() => {
-								setType('species');
-								setSelectedResource(info);
-								toggleModal();
-							}}
-						/>
-					))}
-				</CardWrapper>
-			</>
-		);
-	else return <PageTitle>No resource here</PageTitle>;
+        <CardWrapper>
+          {results.map((info, key) => (
+            <SpeciesCard
+              info={info}
+              key={`${key}-species`}
+              handleToggleFav={() => toggleFavorite(info)}
+              onClick={() => {
+                setType('species');
+                setSelectedResource(info);
+                toggleModal();
+              }}
+            />
+          ))}
+        </CardWrapper>
+      </>
+    );
+  else return <PageTitle>No resource here</PageTitle>;
 };
 
 export default Species;

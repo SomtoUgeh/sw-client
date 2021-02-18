@@ -11,46 +11,46 @@ import { PageHeaderComponent, PageTitle } from 'components/PageTitle';
 import { useFavorite } from 'hooks/useFavorite';
 
 const Vehicles: React.FC = () => {
-	const dispatch = useDispatch();
-	const {
-		toggle: toggleModal,
-		setSelectedResource,
-		setType,
-	} = useDetailsView();
+  const dispatch = useDispatch();
+  const {
+    toggle: toggleModal,
+    setSelectedResource,
+    setType,
+  } = useDetailsView();
 
-	const { resource, status } = useSelector((state: RootState) => state.base);
-	React.useEffect(() => {
-		dispatch(fetchResourceRequest({ url: 'vehicles/' }));
-	}, [dispatch]);
+  const { resource, status } = useSelector((state: RootState) => state.base);
+  React.useEffect(() => {
+    dispatch(fetchResourceRequest({ url: 'vehicles/' }));
+  }, [dispatch]);
 
-	const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'vehicle');
-	const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
+  const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'vehicle');
+  const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
 
-	if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
-	if (status === 'SUCCESS' && resource.results.length > 0)
-		return (
-			<>
-				<PageHeaderComponent
-					{...{ searchTerm, setSearchTerm, name: 'vehicles' }}
-				/>
+  if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
+  if (status === 'SUCCESS' && resource.results.length > 0)
+    return (
+      <>
+        <PageHeaderComponent
+          {...{ searchTerm, setSearchTerm, name: 'vehicles' }}
+        />
 
-				<CardWrapper>
-					{results.map((info, key) => (
-						<VehiclesCard
-							info={info}
-							key={`${key}-vehicles`}
-							handleToggleFav={() => toggleFavorite(info)}
-							onClick={() => {
-								setType('vehicle');
-								setSelectedResource(info);
-								toggleModal();
-							}}
-						/>
-					))}
-				</CardWrapper>
-			</>
-		);
-	else return <PageTitle>No resource here</PageTitle>;
+        <CardWrapper>
+          {results.map((info, key) => (
+            <VehiclesCard
+              info={info}
+              key={`${key}-vehicles`}
+              handleToggleFav={() => toggleFavorite(info)}
+              onClick={() => {
+                setType('vehicle');
+                setSelectedResource(info);
+                toggleModal();
+              }}
+            />
+          ))}
+        </CardWrapper>
+      </>
+    );
+  else return <PageTitle>No resource here</PageTitle>;
 };
 
 export default Vehicles;

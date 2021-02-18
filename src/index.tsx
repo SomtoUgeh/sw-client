@@ -31,22 +31,22 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const routes = (
-	<Provider store={store}>
-		<Router>
-			<GlobalStyle />
-			<App>
-				<Switch>
-					<Route component={Planets} exact path="/planets" />
-					<Route component={Films} exact path="/films" />
-					<Route component={Species} exact path="/species" />
-					<Route component={Starships} exact path="/starships" />
-					<Route component={Vehicles} exact path="/vehicles" />
-					<Route component={Favorite} exact path="/favorite" />
-					<Route component={People} exact path={['/', '/people']} />
-				</Switch>
-			</App>
-		</Router>
-	</Provider>
+  <Provider store={store}>
+    <Router>
+      <GlobalStyle />
+      <App>
+        <Switch>
+          <Route component={Planets} exact path="/planets" />
+          <Route component={Films} exact path="/films" />
+          <Route component={Species} exact path="/species" />
+          <Route component={Starships} exact path="/starships" />
+          <Route component={Vehicles} exact path="/vehicles" />
+          <Route component={Favorite} exact path="/favorite" />
+          <Route component={People} exact path={['/', '/people']} />
+        </Switch>
+      </App>
+    </Router>
+  </Provider>
 );
 
 ReactDOM.render(routes, document.getElementById('root'));

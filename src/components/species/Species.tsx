@@ -1,30 +1,25 @@
 import * as React from 'react';
 import SpeciesCard from './SpeciesCard';
+import { useRoot } from 'hooks/useRoots';
 import { Loader } from 'components/Loader';
 import { useSearch } from 'hooks/useSearch';
-import { RootState } from 'store/rootReducers';
-import { fetchResourceRequest } from 'redux/action';
-import { useDispatch, useSelector } from 'react-redux';
-import { CardWrapper } from 'components/cards/style';
-import { PageHeaderComponent, PageTitle } from 'components/PageTitle';
-import { useDetailsView } from 'contexts/DetailsContext';
 import { useFavorite } from 'hooks/useFavorite';
+import { CardWrapper } from 'components/cards/style';
+import { useDetailsView } from 'contexts/DetailsContext';
+import { ResourceCompleteInterface } from 'redux/reducer';
+import { PageHeaderComponent, PageTitle } from 'components/PageTitle';
 
 const Species: React.FC = () => {
-  const dispatch = useDispatch();
+  const [root] = useRoot({ url: 'species' });
+  const { resource, status } = root as ResourceCompleteInterface;
+  const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'species');
+  const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
+
   const {
     toggle: toggleModal,
     setSelectedResource,
     setType,
   } = useDetailsView();
-
-  const { resource, status } = useSelector((state: RootState) => state.base);
-  React.useEffect(() => {
-    dispatch(fetchResourceRequest({ url: 'species/' }));
-  }, [dispatch]);
-
-  const { BASE_RESOURCE, toggleFavorite } = useFavorite(resource, 'people');
-  const { searchTerm, setSearchTerm, results } = useSearch(BASE_RESOURCE);
 
   if (['IDLE', 'LOADING'].includes(status)) return <Loader />;
   if (status === 'SUCCESS' && resource.results.length > 0)

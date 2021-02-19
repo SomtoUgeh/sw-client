@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/ban-types */
 import * as React from 'react';
 import { useLocalStorage } from 'hooks/useLocalStorage';
@@ -64,8 +63,6 @@ function FavoriteContextProvider(props: React.PropsWithChildren<{}>) {
     const updatedItem = favoriteResources.filter(
       rec => rec[identifier] !== unique,
     );
-
-    console.log(updatedItem);
 
     setFavoriteResources(updatedItem);
   }

@@ -1,27 +1,23 @@
 import * as React from 'react';
 import FilmsCard from './FilmsCard';
+import { useRoot } from 'hooks/useRoots';
 import { Loader } from 'components/Loader';
 import { useSearch } from 'hooks/useSearch';
-import { RootState } from 'store/rootReducers';
-import { fetchResourceRequest } from 'redux/action';
-import { useDispatch, useSelector } from 'react-redux';
+import { useFavorite } from 'hooks/useFavorite';
 import { CardWrapper } from 'components/cards/style';
 import { useDetailsView } from 'contexts/DetailsContext';
+import { ResourceCompleteInterface } from 'redux/reducer';
 import { PageHeaderComponent, PageTitle } from 'components/PageTitle';
-import { useFavorite } from 'hooks/useFavorite';
 
 const Films: React.FC = () => {
-  const dispatch = useDispatch();
+  const [root] = useRoot({ url: 'films' });
+  const { resource, status } = root as ResourceCompleteInterface;
+
   const {
     toggle: toggleModal,
     setSelectedResource,
     setType,
   } = useDetailsView();
-
-  const { resource, status } = useSelector((state: RootState) => state.base);
-  React.useEffect(() => {
-    dispatch(fetchResourceRequest({ url: 'films/' }));
-  }, [dispatch]);
 
   const { BASE_RESOURCE, toggleFavorite } = useFavorite(
     resource,

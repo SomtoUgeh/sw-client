@@ -2,9 +2,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
 import NavItem from 'layout/navigation/NavItem';
-import { RootState } from 'store/rootReducers';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRootRequest } from 'components/roots/redux/action';
 // @ts-ignore
 import { ReactComponent as Logo } from 'assets/logo.svg';
 // @ts-ignore
@@ -16,17 +13,15 @@ import {
   LogoWrapper,
   NavigationContainer,
 } from 'layout/styles';
+import { RootsCompleteInterface } from 'components/roots/redux/reducer';
 
-export const Navigation: React.FC = () => {
-  const dispatch = useDispatch();
-  const [openMenu, setOpenMenu] = React.useState(false);
+interface NavigationInterface {
+  roots: RootsCompleteInterface['roots'];
+}
 
-  const { roots } = useSelector((state: RootState) => state.roots);
+export const Navigation: React.FC<NavigationInterface> = ({ roots }) => {
   const keys = Object.keys(roots || {});
-
-  React.useEffect(() => {
-    dispatch(fetchRootRequest());
-  }, [dispatch]);
+  const [openMenu, setOpenMenu] = React.useState(false);
 
   return (
     <HeaderContainer className={cx(openMenu && 'isOpen')}>

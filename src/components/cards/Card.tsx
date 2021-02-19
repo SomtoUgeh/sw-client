@@ -16,7 +16,7 @@ interface CardPropsInterface {
  */
 const Card: React.FC<CardPropsInterface> = props => {
   return (
-    <CardItem>
+    <CardItem data-testid="card">
       <div className="block" onClick={props.onClick} />
       <div className="information">{props.children}</div>
       <Star

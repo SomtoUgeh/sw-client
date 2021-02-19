@@ -10,7 +10,7 @@ interface NavItemInterface {
 
 const NavItem: React.FC<NavItemInterface> = props => {
   return (
-    <li>
+    <li className="nav-item">
       <NavLink
         activeClassName="active"
         to={`/${props?.name}`}

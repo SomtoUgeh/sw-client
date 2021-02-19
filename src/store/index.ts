@@ -1,6 +1,6 @@
-import createSagaMiddleware from 'redux-saga';
-import { rootReducer } from './rootReducers';
 import rootSaga from './rootSaga';
+import { rootReducer } from './rootReducers';
+import createSagaMiddleware from 'redux-saga';
 import { applyMiddleware, compose, createStore } from 'redux';
 
 // React Sagas

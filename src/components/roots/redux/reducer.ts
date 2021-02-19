@@ -6,15 +6,15 @@ import {
   FetchRootActionType,
 } from './type';
 
-interface RootsCompleteInterface {
+export interface RootsCompleteInterface {
   roots: Record<string, unknown>;
   error: string;
-  state: ResourceState;
+  status: ResourceState;
 }
 
 const INITIAL_STATE: RootsCompleteInterface = {
   roots: {},
-  state: 'IDLE',
+  status: 'IDLE',
   error: '',
 };
 
@@ -26,18 +26,18 @@ const rootReducer = (
     case FETCH_ROOT:
       return {
         ...state,
-        state: 'LOADING',
+        status: 'LOADING',
       };
     case FETCH_ROOT_SUCCESS:
       return {
         ...state,
-        state: 'SUCCESS',
+        status: 'SUCCESS',
         roots: action.payload,
       };
     case FETCH_ROOT_FAILURE:
       return {
         ...state,
-        state: 'FAILURE',
+        status: 'FAILURE',
         error: action.payload,
       };
     default:

@@ -1,4 +1,4 @@
-import { fetchBase } from 'lib/api';
+import { getRoot } from 'api';
 import { fetchBaseResourceSaga } from 'redux/saga';
 import { getResponseMock } from 'data/GetResponseMock';
 import { call, put } from 'redux-saga/effects';
@@ -11,7 +11,7 @@ describe('check base fetch saga', () => {
     const generator = fetchBaseResourceSaga(fetchResourceRequest({ url }));
     const response = { ...getResponseMock };
 
-    expect(generator.next().value).toEqual(call(fetchBase, url));
+    expect(generator.next().value).toEqual(call(getRoot, url));
 
     expect(generator.next(response).value).toEqual(
       put(fetchResourceSuccess(getResponseMock)),

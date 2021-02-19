@@ -1,19 +1,12 @@
 import * as React from 'react';
-import { useLottie } from 'lottie-react';
-import loader from 'assets/loading.json';
+import { Spinner } from 'reactstrap';
 import styled from 'styled-components';
 
-export const Loader: React.FC = () => {
-  const options = {
-    animationData: loader,
-    loop: true,
-    autoplay: true,
-  };
-
-  const { View } = useLottie(options);
-
-  return <LoaderContainer>{View}</LoaderContainer>;
-};
+export const Loader: React.FC = () => (
+  <LoaderContainer data-testid="loader">
+    <Spinner color="secondary" />
+  </LoaderContainer>
+);
 
 const LoaderContainer = styled.div`
   height: 60vh;

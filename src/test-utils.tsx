@@ -20,10 +20,10 @@ const render = (
     ),
     ...renderOptions
   }: {
-    initialState: RootState;
-    store: Store<RootState>;
-    renderOptions: RenderOptions;
-  },
+    initialState?: RootState;
+    store?: Store<RootState>;
+    renderOptions?: RenderOptions;
+  } = {},
 ) => {
   const history = createMemoryHistory();
 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const Loader: React.FC = () => (
   <LoaderContainer data-testid="loader">
-    <Spinner color="secondary" />
+    <Spinner color="info" />
   </LoaderContainer>
 );
 

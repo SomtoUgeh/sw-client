@@ -2,10 +2,29 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { store } from 'store';
+import createSagaMiddleware from 'redux-saga';
+import { rootReducer, RootState } from 'store/rootReducers';
+import { createStore, compose, applyMiddleware, Store } from 'redux';
 import { RenderOptions, render as rtlRender } from '@testing-library/react';
 
-const render = (ui: React.ReactElement, renderOptions?: RenderOptions) => {
+const sagaMiddleware = createSagaMiddleware();
+
+const render = (
+  ui: React.ReactElement,
+  {
+    initialState,
+    store = createStore(
+      rootReducer,
+      initialState,
+      compose(applyMiddleware(sagaMiddleware)),
+    ),
+    ...renderOptions
+  }: {
+    initialState: RootState;
+    store: Store<RootState>;
+    renderOptions: RenderOptions;
+  },
+) => {
   const history = createMemoryHistory();
 
   const Wrapper: React.FC = ({ children }) => (

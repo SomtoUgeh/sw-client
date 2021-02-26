@@ -22,9 +22,9 @@ const Favorite = () => {
   return (
     <CardWrapper>
       {favoriteResources.map(info => {
-        const identifier = info?.favkey !== 'film' ? 'name' : 'title';
-        const uniqueAttr = info?.[identifier] as string;
         const key = info?.favKey as string;
+        const identifier = key === 'film' ? 'title' : 'name';
+        const uniqueAttr = info?.[identifier] as string;
 
         const composedResource = composeResource(info, key);
 
